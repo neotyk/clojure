@@ -5937,6 +5937,10 @@
   []
   (let [d (java.util.concurrent.CountDownLatch. 1)
         v (atom nil)]
+    ^{:delivered?
+      (fn []
+        (locking d
+          (zero? (.getCount ))))}
     (reify 
      clojure.lang.IDeref
       (deref [_] (.await d) @v)
@@ -5957,6 +5961,14 @@
    :static true}
   [promise val] (promise val))
 
+(defn delivered?
+  "Alpha - shubject to change.
+  Checks if promise has been delivered."
+  {:added "1.3"
+   :static true}
+  [promise]
+  (if-let [f (:delivered? (meta p))]
+    (f)))
 
 
 (defn flatten
