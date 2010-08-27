@@ -24,3 +24,6 @@
   (let [p (promise)]
     (deliver p 42)
     (is (true? (delivered? p)))))
+
+(deftest delivery-check-of-non-promise
+  (is (nil? (delivered? "a"))))
