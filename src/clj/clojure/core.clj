@@ -5962,7 +5962,7 @@
   [promise val] (promise val))
 
 (defn delivered?
-  "Alpha - shubject to change.
+  "Alpha - subject to change.
   Checks if promise has been delivered."
   {:added "1.3"
    :static true}
