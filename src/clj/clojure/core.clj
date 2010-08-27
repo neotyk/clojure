@@ -5967,7 +5967,7 @@
   {:added "1.3"
    :static true}
   [p]
-  (if-let [f (:delivered? (meta p))]
+  (when-let [f (:delivered? (meta p))]
     (f)))
 
 
