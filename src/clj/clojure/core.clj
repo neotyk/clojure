@@ -5940,7 +5940,7 @@
     ^{:delivered?
       (fn []
         (locking d
-          (zero? (.getCount ))))}
+          (zero? (.getCount d))))}
     (reify 
      clojure.lang.IDeref
       (deref [_] (.await d) @v)
@@ -5966,7 +5966,7 @@
   Checks if promise has been delivered."
   {:added "1.3"
    :static true}
-  [promise]
+  [p]
   (if-let [f (:delivered? (meta p))]
     (f)))
 
